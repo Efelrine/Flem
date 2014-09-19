@@ -1,6 +1,7 @@
 = bootstrap_form_for(@item, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-3') do |f|
   = f.text_field :name
   = f.number_field :number, min: 0, max:500, step: 1
+  = f.collection_select :owner_id, Owner.all, :id, :name, {}, { class: 'improved-select' }
 
   .col-sm-offset-2
     - if defined? save_and_new

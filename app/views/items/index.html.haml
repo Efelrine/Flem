@@ -30,7 +30,10 @@
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
             %td.item-id= item.id
             %td.item-name= item.name
-            %td.item-owner= item.owner.name if item.owner
+            %td
+              - if item.owner
+                = link_to owner_path(item.owner), class: 'panel-link' do
+                  %span.item-owner= item.owner.name
             %td.item-number= item.number
             %td= link_to 'Éditer', edit_item_path(item)
 
