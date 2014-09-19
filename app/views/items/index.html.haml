@@ -19,6 +19,9 @@
           %th.sort{ data: { sort: 'item-name' } }
             Nom
             %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-owner' } }
+            Propriétaire
+            %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-number' } }
             Nombre
             %i.fa.fa-sort
@@ -27,6 +30,7 @@
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
             %td.item-id= item.id
             %td.item-name= item.name
+            %td.item-owner= item.owner.name if item.owner
             %td.item-number= item.number
             %td= link_to 'Éditer', edit_item_path(item)
 
