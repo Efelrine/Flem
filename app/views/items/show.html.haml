@@ -1,0 +1,13 @@
+.page-header
+  %h3
+    = @item.name
+
+  .links
+    = link_to edit_item_path(@item), class: 'btn btn-default btn-xs' do
+      %span.fa.fa-edit
+      Modifier
+
+
+    = link_to items_path, class: 'btn btn-default btn-xs' do
+      %span.fa.fa-index
+      Retour à la liste

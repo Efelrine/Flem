@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {$('input[type=file]').bootstrapFileInput() });
