@@ -21,6 +21,17 @@
               %a{:href => "items"} Objets
             %li
               %a{:href => "owners"} Propriétaires
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li
+                %a #{current_user.email}
+              %li
+                %a{:href => destroy_user_session_path, :method => :delete } Déconnexion
+            - else
+              %li
+                %a{:href => new_user_session_path} Connexion
+              %li
+                %a{:href => new_user_registration_path} S'enregistrer
     .container
       .row
         .span12
