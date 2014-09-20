@@ -1,0 +1,28 @@
+.page-header
+  %h1 Propriétaires
+
+.col-sm-6#owners-list
+  #new-owner-button
+    %a.btn.btn-primary{ href: new_item_path, title: 'Nouveau Propriétaire',   }
+      %span.fa.fa-plus
+      Nouveau propriétaire
+  .pane
+    %table.table.table-striped.table-condensed
+      %thead
+        %tr
+          %th.sort{ data: { sort: 'owner-id'} }
+            ID
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'owner-name' } }
+            Nom
+            %i.fa.fa-sort
+      %tbody.list
+        - @owners.each do |owner|
+          %tr.owner-entry{ data: {'infos-url' => owner_path(owner) } }
+            %td.owner-id= owner.id
+            %td.owner-name= owner.name
+            %td= link_to 'Voir', owner
+            %td= link_to 'Éditer', edit_owner_path(owner)
+
+
+  %br

@@ -1,0 +1,27 @@
+%html
+  %head
+    %title= content_for?(:title) ? yield(:title) : "Flem"
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+
+  %body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %a.btn.navbar-toggle{ data: { target:'#navbar-collapse1', toggle:'collapse' } }
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{ href: root_url }
+            Flem
+        .collapse.navbar-collapse#navbar-collapse1
+          %ul.nav.navbar-nav
+            %li
+              %a{:href => "items"} Objets
+            %li
+              %a{:href => "owners"} Propriétaires
+    .container
+      .row
+        .span12
+          = yield

@@ -1,0 +1,7 @@
+= bootstrap_form_for(@owner, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-3') do |f|
+  = f.text_field :name
+
+  .col-sm-offset-2
+    - if defined? save_and_new
+      = f.primary 'Enregistrer et nouveau'
+    = f.primary 'Enregistrer'

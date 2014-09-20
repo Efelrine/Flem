@@ -5,10 +5,7 @@
   #new-item-button
     %a.btn.btn-primary{ href: new_item_path, title: 'Nouvel Objet',   }
       %span.fa.fa-plus
-  .input-group
-    %span.input-group-addon
-      %span.fa.fa-search
-    %input.search.form-control{ autofocus: 'on' }
+      Nouvel Objet
   .pane
     %table.table.table-striped.table-condensed
       %thead
@@ -35,6 +32,7 @@
                 = link_to owner_path(item.owner), class: 'panel-link' do
                   %span.item-owner= item.owner.name
             %td.item-number= item.number
+            %td= link_to 'Voir', item
             %td= link_to 'Éditer', edit_item_path(item)
 
 

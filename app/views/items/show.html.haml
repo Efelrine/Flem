@@ -11,3 +11,8 @@
     = link_to items_path, class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
       Retour à la liste
+
+
+    = link_to @item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+      %span.fa.fa-delete
+      Supprimer

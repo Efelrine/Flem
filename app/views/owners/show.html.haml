@@ -1,0 +1,18 @@
+.page-header
+  %h3
+    = @owner.name
+
+  .links
+    = link_to edit_owner_path(@owner), class: 'btn btn-default btn-xs' do
+      %span.fa.fa-edit
+      Modifier
+
+
+    = link_to owners_path, class: 'btn btn-default btn-xs' do
+      %span.fa.fa-index
+      Retour à la liste
+
+
+    = link_to @owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+      %span.fa.fa-delete
+      Supprimer
