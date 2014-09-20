@@ -18,9 +18,9 @@
         .collapse.navbar-collapse#navbar-collapse1
           %ul.nav.navbar-nav
             %li
-              %a{:href => "items"} Objets
+              %a{:href => items_path} Objets
             %li
-              %a{:href => "owners"} Propriétaires
+              %a{:href => owners_path} Propriétaires
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li
