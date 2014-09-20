@@ -1,4 +1,4 @@
 class Item < ActiveRecord::Base
-	belongs_to :owner, presence: true
+	belongs_to :owner
 	validates :name, presence: true
 end
