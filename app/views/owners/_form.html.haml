@@ -1,7 +1,8 @@
 = bootstrap_form_for(@owner, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-3') do |f|
   = f.text_field :name
-  = collection_check_boxes(:owner, :user_ids, User.all, :id, :email)
-
+  = f.text_field :phone
+  - if not @owner.is_primary
+    = collection_check_boxes(:owner, :user_ids, User.all, :id, :email)
   .col-sm-offset-2
     - if defined? save_and_new
       = f.primary 'Enregistrer et nouveau'
