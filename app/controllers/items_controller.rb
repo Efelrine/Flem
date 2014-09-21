@@ -28,7 +28,14 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to items_url, notice: 'Item was successfully created.' }
+        format.html do
+          if params[:commit] == "Enregistrer et nouveau"
+            action = new_item_path
+          else
+            action = items_url
+          end
+        redirect_to action, notice: 'Item was successfully created.'
+        end
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
