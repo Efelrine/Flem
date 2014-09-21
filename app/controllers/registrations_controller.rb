@@ -5,11 +5,13 @@ class RegistrationsController < Devise::RegistrationsController
     super
     # Generate your profile here
     # ...
-    owner = Owner.create
-    owner.name = @user.name
-    owner.phone =  @user.phone
-    @user.owners << owner
-    owner.save
+    if @user.save 
+      owner = Owner.create
+      owner.name = @user.name
+      owner.phone =  @user.phone
+      @user.owners << owner
+      owner.save
+    end
   end
 
   def update
