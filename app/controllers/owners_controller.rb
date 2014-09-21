@@ -25,6 +25,7 @@ class OwnersController < ApplicationController
   # POST /owners.json
   def create
     @owner = Owner.new(owner_params)
+    @user = User.all
 
     respond_to do |format|
       if @owner.save
@@ -70,5 +71,7 @@ class OwnersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def owner_params
       params.require(:owner).permit(:name)
+      params.require(:owner).permit(:phone)
+      params.require(:owner).permit(:user_ids => [])
     end
 end
