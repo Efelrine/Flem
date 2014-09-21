@@ -9,6 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
       owner = Owner.create
       owner.name = @user.name
       owner.phone =  @user.phone
+      owner.is_primary = true
       @user.owners << owner
       owner.save
     end
