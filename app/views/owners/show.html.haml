@@ -1,7 +1,25 @@
 .page-header
-  %h3
+  %h1 
     = @owner.name
-
+.col-sm-6#owners-list
+  %h3
+    Utilisteur(s) lié(s):
+  .pane
+    %table.table.table-striped.table-condensed#users_linked_list
+      %thead
+        %tr
+          %th.sort{ data: { sort: 'user-name'} }
+            Nom
+          %th.sort{ data: { sort: 'user-email'} }
+            Email
+          %th.sort{ data: { sort: 'user-phone'} }
+            Téléphone
+      %tbody.list
+        - @owner.users.each do |user|
+          %tr.user-entry{ data: {'infos-url' => "test" } }
+            %td.user-name= user.name
+            %td.user-email= user.email
+            %td.user-phone= user.phone
   .links
     = link_to edit_owner_path(@owner), class: 'btn btn-default btn-xs' do
       %span.fa.fa-edit
