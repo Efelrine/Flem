@@ -26,7 +26,5 @@
             %td.item-name= item.name
             %td.item-number= item.number
             %td= link_to 'Voir', item
-            %td= link_to 'Éditer', edit_item_path(item)
+            %td= link_to 'Éditer', edit_item_path(item, @concern_owner)
 
-
-  %br
