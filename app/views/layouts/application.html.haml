@@ -22,6 +22,16 @@
               %a{:href => items_path} Objets
             %li
               %a{:href => owners_path} Propriétaires
+            %li.dropdown
+              %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+                Inventaire personnel
+                %span.caret
+              - if current_user
+                %ul.dropdown-menu{"role" => "menu"}
+                  - @owners = current_user.owners
+                  - @owners.each do |owner|
+                    %li
+                      %a{:href => personalItems_url(owner)}= owner.name
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li
