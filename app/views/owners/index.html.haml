@@ -24,5 +24,8 @@
             %td.owner-id= owner.id
             %td.owner-name= owner.name
             %td= link_to 'Voir', owner
-            %td= link_to 'Éditer', edit_owner_path(owner)
+            - if be_owner(owner)
+              %td= link_to 'Éditer', edit_owner_path(owner)
+            -else
+              %td
   %br

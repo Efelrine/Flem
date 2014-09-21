@@ -1,5 +1,7 @@
 class OwnersController < ApplicationController
+  before_action :require_sign_in
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
+  before_action :require_be_owner, only: [:edit]
 
   # GET /owners
   # GET /owners.json
