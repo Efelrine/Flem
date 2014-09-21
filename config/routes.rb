@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources "items"
   resources "owners"
 
+  get 'owners/:id/items' => 'items#indexOwner'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

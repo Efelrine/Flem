@@ -7,6 +7,13 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
+  # GET /owners/1/items
+  # GET /owners/1/items.json
+  def indexOwner
+    @concern_owner = Owner.find(params[:id])
+    @items = @concern_owner.items
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show
