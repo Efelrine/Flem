@@ -7,7 +7,7 @@
       %span.fa.fa-plus
       Nouveau propriétaire
   .pane
-    %table.table.table-striped.table-condensed
+    %table.table.table-striped.table-condensed.datatable#datable
       %thead
         %tr
           %th.sort{ data: { sort: 'owner-id'} }
@@ -16,6 +16,8 @@
           %th.sort{ data: { sort: 'owner-name' } }
             Nom
             %i.fa.fa-sort
+          %th
+          %th
       %tbody.list
         - @owners.each do |owner|
           %tr.owner-entry{ data: {'infos-url' => owner_path(owner) } }
