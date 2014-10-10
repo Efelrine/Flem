@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921130737) do
+ActiveRecord::Schema.define(version: 20140921212303) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140921130737) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
+    t.boolean  "is_loanable", default: false, null: false
   end
 
   add_index "items", ["owner_id"], name: "index_items_on_owner_id"

@@ -4,6 +4,9 @@
   = f.collection_select :owner_id, get_owners, :id, :name, {}, { class: 'improved-select' }
 
   .col-sm-offset-2
+    = f.check_box :is_loanable
+
+  .col-sm-offset-2
     - if defined? save_and_new
       = f.primary 'Enregistrer et nouveau'
     = f.primary 'Enregistrer'

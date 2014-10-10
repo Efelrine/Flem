@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.where("is_loanable" => true)
   end
 
   # GET /owners/1/items
@@ -85,6 +85,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name,:number, :owner_id)
+      params.require(:item).permit(:name,:number, :owner_id, :is_loanable)
     end
 end
