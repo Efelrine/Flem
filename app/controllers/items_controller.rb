@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :require_be_owner, only: [:indexOwner]
+  before_action :require_be_owner_item, only: [:edit]
 
   # GET /items
   # GET /items.json

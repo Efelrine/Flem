@@ -31,5 +31,8 @@
                   %span.item-owner= item.owner.name
             %td.item-number= item.number
             %td= link_to 'Voir', item
-            %td= link_to 'Éditer', edit_item_path(item)
+            - if be_owner(item.owner)
+              %td= link_to 'Éditer', edit_item_path(item)
+            - else
+              %td
   %br
