@@ -7,12 +7,9 @@
       %span.fa.fa-plus
       Nouvel Objet
   .pane
-    %table.table.table-striped.table-condensed
+    %table.table.table-striped.table-condensed#items_list
       %thead
         %tr
-          %th.sort{ data: { sort: 'item-id'} }
-            ID
-            %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-name' } }
             Nom
             %i.fa.fa-sort
@@ -22,10 +19,11 @@
           %th.sort{ data: { sort: 'item-number' } }
             Nombre
             %i.fa.fa-sort
+          %th
+          %th
       %tbody.list
         - @items.each do |item|
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
-            %td.item-id= item.id
             %td.item-name= item.name
             %td
               - if item.owner
@@ -34,6 +32,4 @@
             %td.item-number= item.number
             %td= link_to 'Voir', item
             %td= link_to 'Éditer', edit_item_path(item)
-
-
   %br
