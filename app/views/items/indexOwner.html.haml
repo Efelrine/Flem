@@ -16,12 +16,29 @@
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-number' } }
             Nombre
+          %th.sort{ data: { sort: 'item-location' } }
+            Localisation
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-price' } }
+            Prix
+          %th.sort{ data: { sort: 'item-is_loanable' } }
+            Empruntable
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-comment' } }
+            Commentaire
+          %th.sort{ data: { sort: 'item-is_lost' } }
+            Perdu
             %i.fa.fa-sort
       %tbody.list
         - @items.each do |item|
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
             %td.item-name= item.name
             %td.item-number= item.number
+            %td.item-location= item.location
+            %td.item-price= item.price
+            %td.item-is_loanable= item.is_loanable
+            %td.item-comment= item.comment
+            %td.item-is_lost= item.is_lost
             %td= link_to 'Voir', item
             %td= link_to 'Éditer', edit_item_path(item, @concern_owner)
 

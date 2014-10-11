@@ -80,11 +80,16 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      if(Item.find_by_id(params[:id]).nil?)
+        flash[:alert] = "Item not found"
+        redirect_to :root
+      else
+        @item = Item.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name,:number, :owner_id, :is_loanable)
+      params.require(:item).permit(:name,:number, :owner_id, :is_loanable, :comment, :price, :is_lost, :location)
     end
 end
