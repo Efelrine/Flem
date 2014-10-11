@@ -6,13 +6,11 @@
     %a.btn.btn-primary{ href: new_owner_path, title: 'Nouveau Propriétaire',   }
       %span.fa.fa-plus
       Nouveau propriétaire
+  %br
   .pane
     %table.table.table-striped.table-condensed#owners_list
       %thead
         %tr
-          %th.sort{ data: { sort: 'owner-id'} }
-            ID
-            %i.fa.fa-sort
           %th.sort{ data: { sort: 'owner-name' } }
             Nom
             %i.fa.fa-sort
@@ -21,7 +19,6 @@
       %tbody.list
         - @owners.each do |owner|
           %tr.owner-entry{ data: {'infos-url' => owner_path(owner) } }
-            %td.owner-id= owner.id
             %td.owner-name= owner.name
             %td= link_to 'Voir', owner
             - if be_owner(owner)

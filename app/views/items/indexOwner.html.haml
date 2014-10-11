@@ -6,13 +6,11 @@
     %a.btn.btn-primary{ href: new_item_path, title: 'Nouvel Objet'}
       %span.fa.fa-plus
       Nouvel Objet
+  %br
   .pane
-    %table.table.table-striped.table-condensed
+    %table.table.table-striped.table-condensed#items_list_owner
       %thead
         %tr
-          %th.sort{ data: { sort: 'item-id'} }
-            ID
-            %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-name' } }
             Nom
             %i.fa.fa-sort
@@ -22,7 +20,6 @@
       %tbody.list
         - @items.each do |item|
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
-            %td.item-id= item.id
             %td.item-name= item.name
             %td.item-number= item.number
             %td= link_to 'Voir', item
