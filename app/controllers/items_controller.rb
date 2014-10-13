@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :require_be_owner, only: [:indexOwner]
+  before_action :require_be_owner, only: [:index_owner]
   before_action :require_be_owner_item, only: [:edit]
 
   # GET /items
@@ -11,9 +11,14 @@ class ItemsController < ApplicationController
 
   # GET /owners/1/items
   # GET /owners/1/items.json
-  def indexOwner
-    @concern_owner = Owner.find(params[:id])
-    @items = @concern_owner.items
+  def index_owner
+    if Owner.find_by_id(params[:id]).nil?
+      flash[:alert] = "Owner not found"
+      redirect_to :root
+    else
+      @concern_owner = Owner.find(params[:id])
+      @items = @concern_owner.items
+    end
   end
 
   # GET /items/1
@@ -27,6 +32,7 @@ class ItemsController < ApplicationController
   end
 
   # GET /items/1/edit
+  # GET /owners/1/items/1/edit
   def edit
   end
 
@@ -64,6 +70,14 @@ class ItemsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_after_loan loan
+    @item = loan.item
+    @item.is_loaned = true
+    if !@item.update(item_params)
+      flash[:alert] = "Item not updated. Link between item and loan not created."
     end
   end
 

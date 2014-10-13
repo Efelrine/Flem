@@ -4,7 +4,7 @@ class CreateLoans < ActiveRecord::Migration
       t.integer :number
       t.date :date_loan
       t.string :state
-      t.boolean :is_rendered
+      t.boolean :is_rendered, null: false, default: false
     end
   end
 end

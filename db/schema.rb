@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011114028) do
+ActiveRecord::Schema.define(version: 20141011133546) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -23,7 +23,8 @@ ActiveRecord::Schema.define(version: 20141011114028) do
     t.integer  "owner_id"
     t.boolean  "is_loanable", default: false, null: false
     t.string   "location"
-    t.boolean  "is_lost"
+    t.boolean  "is_lost",     default: false, null: false
+    t.boolean  "is_loaned",   default: false, null: false
   end
 
   add_index "items", ["owner_id"], name: "index_items_on_owner_id"
@@ -32,9 +33,10 @@ ActiveRecord::Schema.define(version: 20141011114028) do
     t.integer "number"
     t.date    "date_loan"
     t.string  "state"
-    t.boolean "is_rendered"
+    t.boolean "is_rendered", default: false, null: false
     t.integer "item_id"
     t.integer "owner_id"
+    t.integer "borrower_id"
   end
 
   add_index "loans", ["item_id"], name: "index_loans_on_item_id"

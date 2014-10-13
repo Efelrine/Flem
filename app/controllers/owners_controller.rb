@@ -67,7 +67,7 @@ class OwnersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_owner
-      if(Owner.find_by_id(params[:id]).nil?)
+      if Owner.find_by_id(params[:id]).nil?
         flash[:alert] = "Owner not found"
         redirect_to :root
       else

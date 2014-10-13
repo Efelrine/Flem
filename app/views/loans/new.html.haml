@@ -1,0 +1,24 @@
+.page-header
+  %h1 Nouvel emprunt 
+  = @loan.item.name
+  de 
+  = @loan.owner.name
+  \: Plus que
+  - @numberDispo = @loan.item.number
+  - @loans = Loan.where("item_id"=>@loan.item_id, "is_rendered"=>false)
+  - @loans.each do |loanToAdd|
+    - @numberDispo -= loanToAdd.number
+  = @numberDispo
+  disponibles.
+
+= render partial: 'form'
+
+.links
+  - if params[:idOwner].nil?
+    = link_to items_path, class: 'btn btn-default btn-xs' do
+      %span.fa.fa-index
+      Retour à la liste
+  - else
+    = link_to personalItems_url(Owner.find(params[:idOwner])), class: 'btn btn-default btn-xs' do
+      %span.fa.fa-index
+      Retour à la liste

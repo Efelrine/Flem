@@ -22,11 +22,11 @@
               %a{:href => items_path} Objets
             %li
               %a{:href => owners_path} Propriétaires
-            %li.dropdown
-              %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
-                Inventaire personnel
-                %span.caret
-              - if current_user
+            - if current_user
+              %li.dropdown
+                %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+                  Inventaire personnel
+                  %span.caret
                 %ul.dropdown-menu{"role" => "menu"}
                   - @owners = current_user.owners
                   - @owners.each do |owner|

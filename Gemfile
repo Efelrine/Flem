@@ -32,7 +32,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'haml-rails'
-gem 'erb2haml'
 gem 'rails-i18n'
 
 # Use ActiveModel has_secure_password
