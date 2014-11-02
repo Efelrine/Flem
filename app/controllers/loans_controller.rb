@@ -5,15 +5,15 @@ class LoansController < ApplicationController
 
   # GET /items/1/loans/new
   def new
-  	@item = Item.find_by_id(params[:id])
-  	if @item.nil?
-  	  flash[:alert] = "Item not found"
+    @item = Item.find_by_id(params[:id])
+    if @item.nil?
+      flash[:alert] = "Item not found"
       redirect_to :root
-  	else
-	    @loan = Loan.new
-	    @loan.item = @item
-	    @loan.owner = @item.owner
-	  end
+    else
+      @loan = Loan.new
+      @loan.item = @item
+      @loan.owner = @item.owner
+    end
   end
 
   # GET /loans/1
@@ -28,7 +28,7 @@ class LoansController < ApplicationController
 
     respond_to do |format|
       if @loan.save
-      	@item = @loan.item
+        @item = @loan.item
         format.html { redirect_to @item, notice: 'Loan succesfully created.' }
         format.json { render :show, status: :created, location: @loan }
       else

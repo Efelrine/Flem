@@ -23,14 +23,14 @@ module ApplicationHelper
   end
 
   def get_owners_less_current
-      Owner.all
+    Owner.all
   end
   
   def item_number_available item
     @numberDispo = item.number
     @loans = Loan.where("item_id" => item.id, "is_rendered" => false)
     @loans.each do |loanToDown|
-      @numberDispo -= loanToDown.number
+      @numberDispo =- loanToDown.number
     end
   end
 end
