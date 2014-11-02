@@ -2,6 +2,7 @@ class LoansController < ApplicationController
   before_action :require_sign_in
   before_action :set_loan, only: [:show, :edit, :update]
   before_action :require_be_owner_loan, only: [:edit]
+  before_filter :get_param_owner, only: [:new, :edit]
 
   # GET /items/1/loans/new
   def new
@@ -65,5 +66,9 @@ class LoansController < ApplicationController
       flash[:alert] = "You need to be the owner to access this page"
       redirect_to :root
     end
+  end
+  
+  def get_param_owner
+    @param_owner = Owner.find_by_id(params[:owner_id])
   end
 end

@@ -3,7 +3,7 @@
 
 .col-sm-6#items-list
   #new-item-button
-    %a.btn.btn-primary{ href: new_item_path, title: 'Nouvel Objet'}
+    %a.btn.btn-primary{ href: new_item_path_url(@concern_owner), title: 'Nouvel Objet'}
       %span.fa.fa-plus
       Nouvel Objet
   %br

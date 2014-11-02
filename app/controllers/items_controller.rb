@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :require_be_owner_item, only: [:edit]
+  before_filter :id_owner_default, only: [:new, :edit]
+  before_filter :get_param_owner, only: [:new, :edit]
+  before_filter :owners_by_user, only: [:new, :edit]
 
   # GET /items
   # GET /items.json
@@ -14,6 +17,7 @@ class ItemsController < ApplicationController
   end
 
   # GET /items/new
+  # GET /owners/1/items/new
   def new
     @item = Item.new
   end
@@ -32,11 +36,17 @@ class ItemsController < ApplicationController
       if @item.save
         format.html do
           if params[:commit] == "Enregistrer et nouveau"
-            action = new_item_path
-          else
+            if @param_owner.nil?
+              action = new_item_path
+            else
+              action = new_item_path_url(@param_owner)
+            end
+          elsif @param_owner.nil?
             action = items_url
+          else
+            action = personal_items_url(@param_owner)
           end
-        redirect_to action, notice: 'Item was successfully created.'
+          redirect_to action, notice: 'Item was successfully created.'
         end
         format.json { render :show, status: :created, location: @item }
       else
@@ -51,7 +61,14 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to items_url, notice: 'Item was successfully updated.' }
+        format.html do
+          if @param_owner.nil?
+            action = items_url
+          else
+            action = personal_items_url(@param_owner)
+          end
+          redirect_to action, notice: 'Item was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -65,7 +82,14 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html do
+        if @param_owner.nil?
+          action = items_url
+        else 
+          action = personal_items_url(@param_owner)
+        end
+        redirect_to action, notice: 'Item was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
@@ -81,10 +105,10 @@ class ItemsController < ApplicationController
       end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:name,:number, :owner_id, :is_loanable, :comment, :price, :is_lost, :location)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.require(:item).permit(:name,:number, :owner_id, :is_loanable, :comment, :price, :is_lost, :location)
+  end
 
   def require_be_owner_item
     if user_signed_in?
@@ -95,6 +119,28 @@ class ItemsController < ApplicationController
     else
       flash[:alert] = "You need to be the owner to access this page"
       redirect_to :root
+    end
+  end
+
+  def id_owner_default
+    if @item.nil?
+      if params[:owner_id].nil?
+        @id_owner_default = current_user.owners.find_by(:is_primary => true).id
+      else
+        @id_owner_default = params[:owner_id]
+      end
+    else
+      @id_owner_default = @item.owner.id
+    end
+  end
+  
+  def get_param_owner
+    @param_owner = Owner.find_by_id(params[:owner_id])
+  end
+
+  def owners_by_user
+    if user_signed_in?
+      @owners_by_user = current_user.owners
     end
   end
 end

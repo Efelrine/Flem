@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  before_filter :get_users
 
   protected
 
@@ -26,5 +27,9 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "You need to be sign in to access this page"
       redirect_to :root
     end
+  end
+
+  def get_users
+    @all_users = User.all
   end
 end

@@ -4,11 +4,11 @@
 = render partial: 'form', locals: { save_and_new: true }
 
 .links
-  - if params[:owner_id].nil?
+  - if @param_owner.nil?
     = link_to items_path, class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
       Retour à la liste
   - else
-    = link_to personalItems_url(get_owner(params[:owner_id])), class: 'btn btn-default btn-xs' do
+    = link_to personal_items_url(@param_owner), class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
       Retour à la liste

@@ -6,7 +6,7 @@
 .links
   = link_to 'Afficher', @item
 
-  - if params[:owner_id].nil?
+  - if @param_owner.nil?
     = link_to 'Retour à la liste', items_path
   - else
-    = link_to 'Retour à la liste', personal_items_url(get_owner(params[:owner_id]))
+    = link_to 'Retour à la liste', personal_items_url(@param_owner)
