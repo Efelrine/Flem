@@ -31,7 +31,7 @@
                   - @owners = current_user.owners
                   - @owners.each do |owner|
                     %li
-                      %a{:href => personalItems_url(owner)}= owner.name
+                      %a{:href => personal_items_url(owner)}= owner.name
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li

@@ -1,12 +1,23 @@
 class OwnersController < ApplicationController
   before_action :require_sign_in
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
-  before_action :require_be_owner, only: [:edit]
+  before_action :require_be_owner, only: [:edit, :index_owner]
 
   # GET /owners
   # GET /owners.json
   def index
     @owners = Owner.all
+  end
+
+  # GET /owners/1/items
+  # GET /owners/1/items.json
+  def index_owner
+    if @concern_owner = Owner.find_by_id(params[:id].to_i)
+      @items = @concern_owner.items
+    else
+      flash[:alert] = "Owner not found"
+      redirect_to :root
+    end
   end
 
   # GET /owners/1
@@ -27,7 +38,6 @@ class OwnersController < ApplicationController
   # POST /owners.json
   def create
     @owner = Owner.new(owner_params)
-    @user = User.all
 
     respond_to do |format|
       if @owner.save
@@ -67,11 +77,11 @@ class OwnersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_owner
-      if Owner.find_by_id(params[:id]).nil?
+      if Owner.find_by_id(params[:id].to_i).nil?
         flash[:alert] = "Owner not found"
         redirect_to :root
       else
-        @owner = Owner.find(params[:id])
+        @owner = Owner.find(params[:id].to_i)
       end
     end
 
@@ -79,4 +89,16 @@ class OwnersController < ApplicationController
     def owner_params
       params.require(:owner).permit(:name, :phone, :user_ids => [])
     end
+
+  def require_be_owner
+    if user_signed_in?
+      if !(current_user.owners.include?(Owner.find_by_id(params[:id].to_i)))
+        flash[:alert] = "You need to be the owner to access this page"
+        redirect_to :root
+      end
+    else
+      flash[:alert] = "You need to be the owner to access this page"
+      redirect_to :root
+    end
+  end
 end

@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   resources "owners"
   resources "loans"
 
-  get 'owners/:id/items' => 'items#index_owner', as: :personalItems
+  get 'owners/:id/items' => 'owners#index_owner', as: :personal_items
   get 'items/:id/loans/new/' => 'loans#new', as: :new_loan_path
-  get 'owners/:idOwner/items/:id/edit' => 'items#edit', as: :edit_item_path
+  get 'owners/:owner_id/items/:id/edit' => 'items#edit', as: :edit_item_path
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

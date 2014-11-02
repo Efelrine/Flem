@@ -1,6 +1,6 @@
 = bootstrap_form_for(@loan, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-3') do |f|
-  = f.number_field :number, min: 0, max:@numberDispo, step: 1
-  = f.collection_select :borrower_id, Owner.all, :id, :name, {}, { class: 'improved-select' }
+  = f.number_field :number, min: 0, max:item_number_available(@loan.item), step: 1
+  = f.collection_select :borrower_id, get_owners_less_current, :id, :name, {}, { class: 'improved-select' }
   = f.date_field :date_loan
   = f.text_field :state
   = f.hidden_field :owner_id, :value => @loan.owner.id

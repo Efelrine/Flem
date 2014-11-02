@@ -10,10 +10,10 @@ class LoansController < ApplicationController
   	  flash[:alert] = "Item not found"
       redirect_to :root
   	else
-	  @loan = Loan.new
-	  @loan.item = @item
-	  @loan.owner = @item.owner
-	end
+	    @loan = Loan.new
+	    @loan.item = @item
+	    @loan.owner = @item.owner
+	  end
   end
 
   # GET /loans/1
@@ -44,16 +44,26 @@ class LoansController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_loan
-    if(Loan.find_by_id(params[:id]).nil?)
+    unless @load = Loan.find_by_id(params[:id])
       flash[:alert] = "Loan not found"
       redirect_to :root
-    else
-      @loan = Loan.find(params[:id])
     end
   end
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def loan_params
     params.require(:loan).permit(:number, :date_loan, :state, :is_rendered, :borrower_id, :item_id, :owner_id)
+  end
+
+  def require_be_owner_loan
+    if user_signed_in?
+      if !(current_user.owners.include?(Loan.find(params[:id]).owner))
+        flash[:alert] = "You need to be the owner to access this page"
+        redirect_to :root
+      end
+    else
+      flash[:alert] = "You need to be the owner to access this page"
+      redirect_to :root
+    end
   end
 end

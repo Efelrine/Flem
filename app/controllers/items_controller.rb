@@ -1,24 +1,11 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :require_be_owner, only: [:index_owner]
   before_action :require_be_owner_item, only: [:edit]
 
   # GET /items
   # GET /items.json
   def index
     @items = Item.where("is_loanable" => true)
-  end
-
-  # GET /owners/1/items
-  # GET /owners/1/items.json
-  def index_owner
-    if Owner.find_by_id(params[:id]).nil?
-      flash[:alert] = "Owner not found"
-      redirect_to :root
-    else
-      @concern_owner = Owner.find(params[:id])
-      @items = @concern_owner.items
-    end
   end
 
   # GET /items/1
@@ -73,14 +60,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def update_after_loan loan
-    @item = loan.item
-    @item.is_loaned = true
-    if !@item.update(item_params)
-      flash[:alert] = "Item not updated. Link between item and loan not created."
-    end
-  end
-
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
@@ -94,11 +73,11 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      if(Item.find_by_id(params[:id]).nil?)
+      if(Item.find_by_id(params[:id].to_i).nil?)
         flash[:alert] = "Item not found"
         redirect_to :root
       else
-        @item = Item.find(params[:id])
+        @item = Item.find(params[:id].to_i)
       end
     end
 
@@ -106,4 +85,16 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:name,:number, :owner_id, :is_loanable, :comment, :price, :is_lost, :location)
     end
+
+  def require_be_owner_item
+    if user_signed_in?
+      if !(current_user.owners.include?(Item.find(params[:id].to_i).owner))
+        flash[:alert] = "You need to be the owner to access this page"
+        redirect_to :root
+      end
+    else
+      flash[:alert] = "You need to be the owner to access this page"
+      redirect_to :root
+    end
+  end
 end
