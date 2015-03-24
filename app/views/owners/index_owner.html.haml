@@ -61,4 +61,8 @@
             %td
               -if item.is_loanable & !item.is_loaned
                 = link_to 'Emprunter', new_loan_path_url(item)
+            %td   
+              = link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                %span.fa.fa-delete
+                Supprimer
 
