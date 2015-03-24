@@ -17,6 +17,10 @@ class LoansController < ApplicationController
     end
   end
 
+  # GET /loans/1/edit
+  def edit
+  end
+
   # GET /loans/1
   # GET /loans/1.json
   def show

@@ -31,20 +31,13 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
-
     respond_to do |format|
       if @item.save
         format.html do
           if params[:commit] == "Enregistrer et nouveau"
-            if @param_owner.nil?
-              action = new_item_path
-            else
-              action = new_item_path_url(@param_owner)
-            end
-          elsif @param_owner.nil?
-            action = items_url
+            action = go_to_new_action
           else
-            action = personal_items_url(@param_owner)
+            action = go_to_owner_action
           end
           redirect_to action, notice: 'Item was successfully created.'
         end
@@ -62,12 +55,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         format.html do
-          if @param_owner.nil?
-            action = items_url
-          else
-            action = personal_items_url(@param_owner)
-          end
-          redirect_to action, notice: 'Item was successfully updated.'
+          redirect_to go_to_owner_action, notice: 'Item was successfully updated.'
         end
         format.json { render :show, status: :ok, location: @item }
       else
@@ -77,18 +65,29 @@ class ItemsController < ApplicationController
     end
   end
 
+  def go_to_owner_action
+    if @param_owner.nil?
+      items_url
+    else
+      personal_items_url(@param_owner)
+    end
+  end
+
+  def go_to_new_action
+    if @param_owner.nil?
+      new_item_path
+    else
+      new_item_path_url(@param_owner)
+    end
+  end
+
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
     @item.destroy
     respond_to do |format|
       format.html do
-        if @param_owner.nil?
-          action = items_url
-        else 
-          action = personal_items_url(@param_owner)
-        end
-        redirect_to action, notice: 'Item was successfully destroyed.'
+        redirect_to go_to_owner_action, notice: 'Item was successfully destroyed.'
       end
       format.json { head :no_content }
     end

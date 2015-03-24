@@ -4,11 +4,11 @@ class Item < ActiveRecord::Base
   has_many :loans
 
   def number_available
-    @numberDispo = number
+    available = number
     @loans = Loan.where("item_id" => id, "is_rendered" => false)
     @loans.each do |loanToDown|
-      @numberDispo -= loanToDown.number
+      available -= loanToDown.number
     end
-    @numberDispo
+    available
   end
 end

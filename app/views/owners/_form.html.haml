@@ -2,7 +2,7 @@
   = f.text_field :name
   = f.text_field :phone
   - if not @owner.is_primary
-    = collection_check_boxes(:owner, :user_ids, get_users, :id, :email)
+    = collection_check_boxes(:owner, :user_ids, @all_users, :id, :email)
   .col-sm-offset-2
     - if defined? save_and_new
       = f.primary 'Enregistrer et nouveau'

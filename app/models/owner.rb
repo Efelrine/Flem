@@ -4,7 +4,7 @@ class Owner < ActiveRecord::Base
   validates :name, uniqueness: true
   has_many :loans
 
-  def owners_without_current
-    Owner.where.not(id:id)
+  def other_owners
+    Owner.where.not(id: id)
   end
 end
