@@ -55,7 +55,11 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         format.html do
-          redirect_to personal_items_url(@item.owner), notice: 'Item was successfully updated.'
+          if @item.is_lost
+            redirect_to personal_items_url(@item.owner), notice: "Perdu, perdu... J'ai perdu mes billes..."
+          else
+            redirect_to personal_items_url(@item.owner), notice: 'Item was successfully updated.'
+          end
         end
         format.json { render :show, status: :ok, location: @item }
       else
