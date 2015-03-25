@@ -1,7 +1,7 @@
 class OwnersController < ApplicationController
   before_action :require_sign_in
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
-  before_action :require_be_owner, only: [:edit, :index_owner]
+  before_action :require_be_link_to_owner, only: [:edit, :index_owner]
 
   # GET /owners
   # GET /owners.json
@@ -90,15 +90,7 @@ class OwnersController < ApplicationController
     params.require(:owner).permit(:name, :phone, :user_ids => [])
   end
 
-  def require_be_owner
-    if user_signed_in?
-      if !(current_user.owners.include?(Owner.find_by_id(params[:id].to_i)))
-        flash[:alert] = "You need to be the owner to access this page"
-        redirect_to :root
-      end
-    else
-      flash[:alert] = "You need to be the owner to access this page"
-      redirect_to :root
-    end
+  def require_be_link_to_owner
+    require_be_owner(Owner.find_by_id(params[:id].to_i))
   end
 end

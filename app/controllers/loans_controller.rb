@@ -61,15 +61,7 @@ class LoansController < ApplicationController
   end
 
   def require_be_owner_loan
-    if user_signed_in?
-      if !(current_user.owners.include?(Loan.find(params[:id]).owner))
-        flash[:alert] = "You need to be the owner to access this page"
-        redirect_to :root
-      end
-    else
-      flash[:alert] = "You need to be the owner to access this page"
-      redirect_to :root
-    end
+    require_be_owner(Loan.find(params[:id]).owner)
   end
   
   def get_param_owner

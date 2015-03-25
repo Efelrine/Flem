@@ -55,7 +55,11 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         format.html do
-          redirect_to personal_items_url(@item.owner), notice: 'Item was successfully updated.'
+          if @item.is_lost
+            redirect_to personal_items_url(@item.owner), notice: "Perdu, perdu... J'ai perdu mes billes..."
+          else
+            redirect_to personal_items_url(@item.owner), notice: 'Item was successfully updated.'
+          end
         end
         format.json { render :show, status: :ok, location: @item }
       else
@@ -103,15 +107,7 @@ class ItemsController < ApplicationController
   end
 
   def require_be_owner_item
-    if user_signed_in?
-      if !(current_user.owners.include?(Item.find(params[:id].to_i).owner))
-        flash[:alert] = "You need to be the owner to access this page"
-        redirect_to :root
-      end
-    else
-      flash[:alert] = "You need to be the owner to access this page"
-      redirect_to :root
-    end
+    require_be_owner(Item.find(params[:id].to_i).owner)
   end
 
   def id_owner_default

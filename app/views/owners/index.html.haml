@@ -16,13 +16,18 @@
             %i.fa.fa-sort
           %th
           %th
+          %th
       %tbody.list
         - @owners.each do |owner|
           %tr.owner-entry{ data: {'infos-url' => owner_path(owner) } }
             %td.owner-name= owner.name
             %td= link_to 'Voir', owner
-            - if be_owner(owner)
-              %td= link_to 'Éditer', edit_owner_path(owner)
-            -else
-              %td
+            %td
+              - if be_owner(owner)
+                = link_to 'Éditer', edit_owner_path(owner)
+            %td
+              -if can_be_deleted(owner)
+                = link_to owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                  %span.fa.fa-delete
+                  Supprimer
   %br

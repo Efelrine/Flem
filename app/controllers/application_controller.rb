@@ -32,4 +32,16 @@ class ApplicationController < ActionController::Base
   def get_users
     @all_users = User.all
   end
+
+  def require_be_owner(owner)
+    if user_signed_in?
+      if !(current_user.owners.include?(owner))
+        flash[:alert] = "You need to be the owner to access this page"
+        redirect_to :root
+      end
+    else
+      flash[:alert] = "You need to be the owner to access this page"
+      redirect_to :root
+    end
+  end
 end
