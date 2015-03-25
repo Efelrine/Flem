@@ -103,7 +103,7 @@ class ItemsController < ApplicationController
   end
 
   def require_be_owner_item
-    require_be_owner(Item.find(params[:id].to_i).owner))
+    require_be_owner(Item.find(params[:id].to_i).owner)
   end
 
   def id_owner_default
