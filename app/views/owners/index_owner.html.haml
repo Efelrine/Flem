@@ -33,6 +33,10 @@
           %th.sort{ data: { sort: 'item-is_lost' } }
             Perdu
             %i.fa.fa-sort
+          %th
+          %th
+          %th
+          /%th (Todo : "Voir", Think to add non sortable column)
       %tbody.list
         - @items.each do |item|
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
@@ -56,7 +60,7 @@
                 %span.item-is_lost= "Oui"
               - else
                 %span.item-is_lost= "Non"
-            %td= link_to 'Voir', item
+            /%td= link_to 'Voir', item
             %td= link_to 'Éditer', edit_item_path_url(@concern_owner, item)
             %td
               -if item.is_loanable & !item.is_loaned
