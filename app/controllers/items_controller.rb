@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
           if params[:commit] == "Enregistrer et nouveau"
             action = go_to_new_action
           else
-            action = go_to_owner_action
+            action = personal_items_url(@item.owner)
           end
           redirect_to action, notice: 'Item was successfully created.'
         end
@@ -55,21 +55,13 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         format.html do
-          redirect_to go_to_owner_action, notice: 'Item was successfully updated.'
+          redirect_to personal_items_url(@item.owner), notice: 'Item was successfully updated.'
         end
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def go_to_owner_action
-    if @param_owner.nil?
-      items_url
-    else
-      personal_items_url(@param_owner)
     end
   end
 
@@ -84,10 +76,11 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    owner = @item.owner
     @item.destroy
     respond_to do |format|
       format.html do
-        redirect_to go_to_owner_action, notice: 'Item was successfully destroyed.'
+        redirect_to personal_items_url(owner), notice: 'Item was successfully destroyed.'
       end
       format.json { head :no_content }
     end
