@@ -3,7 +3,7 @@
     = @owner.name
 .col-sm-6#owners-list
   %h3
-    Utilisteur(s) lié(s):
+    Utilisateur(s) lié(s):
   .pane
     %table.table.table-striped.table-condensed#users_linked_list
       %thead
@@ -30,7 +30,7 @@
       %span.fa.fa-index
       Retour à la liste
 
-
-    = link_to @owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
-      %span.fa.fa-delete
-      Supprimer
+    -if can_be_deleted
+      = link_to @owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+        %span.fa.fa-delete
+        Supprimer

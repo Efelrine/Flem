@@ -25,4 +25,10 @@
               %td= link_to 'Éditer', edit_owner_path(owner)
             -else
               %td
+            -if can_be_deleted
+              %td= link_to owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                %span.fa.fa-delete
+                Supprimer
+            -else
+              %td
   %br

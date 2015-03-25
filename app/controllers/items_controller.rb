@@ -110,15 +110,7 @@ class ItemsController < ApplicationController
   end
 
   def require_be_owner_item
-    if user_signed_in?
-      if !(current_user.owners.include?(Item.find(params[:id].to_i).owner))
-        flash[:alert] = "You need to be the owner to access this page"
-        redirect_to :root
-      end
-    else
-      flash[:alert] = "You need to be the owner to access this page"
-      redirect_to :root
-    end
+    require_be_owner(Item.find(params[:id].to_i).owner))
   end
 
   def id_owner_default
