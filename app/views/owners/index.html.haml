@@ -15,12 +15,15 @@
             Nom
             %i.fa.fa-sort
           %th
+            Téléphone
+          %th
           %th
           %th
       %tbody.list
         - @owners.each do |owner|
           %tr.owner-entry{ data: {'infos-url' => owner_path(owner) } }
             %td.owner-name= owner.name
+            %td.owner-phone= owner.phone
             %td= link_to 'Voir', owner
             %td
               - if be_owner(owner)
