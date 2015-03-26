@@ -2,6 +2,7 @@ class OwnersController < ApplicationController
   before_action :require_sign_in
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
   before_action :require_be_link_to_owner, only: [:edit, :index_owner]
+  before_action :require_current_user_link, only: [:create, :update]
 
   # GET /owners
   # GET /owners.json
@@ -92,5 +93,13 @@ class OwnersController < ApplicationController
 
   def require_be_link_to_owner
     require_be_owner(Owner.find_by_id(params[:id].to_i))
+  end
+
+  def require_current_user_link
+    if (params[:owner][:user_ids].nil?)
+      params[:owner][:user_ids] = [current_user.id]
+    else
+      params[:owner][:user_ids].push current_user.id
+    end
   end
 end
