@@ -9,5 +9,5 @@ $ ->
 	} )
 	$('#items_list_owner').dataTable( {
 		"aaSorting": [[0, "asc"]],
-		"aoColumnDefs": [{ "bSortable": false, "aTargets": [ 3, 4, 8, 9] }]
+		"aoColumnDefs": [{ "bSortable": false, "aTargets": [1, 3, 4, 8, 9] }]
 	} )

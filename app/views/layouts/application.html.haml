@@ -32,6 +32,8 @@
                   - @owners.each do |owner|
                     %li
                       %a{:href => personal_items_url(owner)}= owner.name
+                  %li
+                    %a{:href => all_personal_items_url}= "Tous"
             %li
               %a{:href => new_item_path} Ajouter un objet
           %ul.nav.navbar-nav.navbar-right

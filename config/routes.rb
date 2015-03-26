@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources "owners"
   resources "loans"
 
+  get 'user/items' => 'items#index_user', as: :all_personal_items
   get 'owners/:id/items' => 'owners#index_owner', as: :personal_items
   get 'items/:id/loans/new/' => 'loans#new', as: :new_loan_path
   get 'owners/:owner_id/items/:id/edit' => 'items#edit', as: :edit_item_path

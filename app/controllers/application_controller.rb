@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
 
   def require_be_owner(owner)
     if user_signed_in?
-      if !(current_user.owners.include?(owner))
-        flash[:alert] = "You need to be the owner to access this page"
+      unless current_user.owners.include?(owner) | owner.nil?
+        flash[:alert] = "You need to be the owner to access this page 1"
         redirect_to :root
       end
     else

@@ -1,0 +1,59 @@
+.page-header
+  %h1 Objets liés à #{current_user.name}
+
+.col-sm-6#items-list
+  #new-item-button
+    %a.btn.btn-primary{ href: new_item_path, title: 'Nouvel Objet'}
+      %span.fa.fa-plus
+      Nouvel Objet
+  %br
+  .pane
+    %table.table.table-striped.table-condensed#items_list_user
+      %thead
+        %tr
+          %th.sort{ data: { sort: 'item-name' } }
+            Nom
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-owner' } }
+            Propriétaire
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-number' } }
+            Nombre
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-location' } }
+            Localisation
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-is_loaned' } }
+            Emprunté
+            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-is_lost' } }
+            Perdu
+            %i.fa.fa-sort
+          %th
+          %th
+          /%th (Todo : "Voir", Think to add non sortable column)
+      %tbody.list
+        - @items.each do |item|
+          %tr.item-entry{ data: {'infos-url' => item_path(item) } }
+            %td.item-name= item.name
+            %td.item-owner= item.owner.name
+            %td.item-number= item.number
+            %td.item-location= item.location
+            %td
+              - if item.is_loaned
+                %span.item-is_loaned= "Oui"
+              - else
+                %span.item-is_loaned= "Non"
+            %td
+              - if item.is_lost
+                %span.item-is_lost= "Oui"
+              - else
+                %span.item-is_lost= "Non"
+            /%td= link_to 'Voir', item
+            %td
+              = link_to 'Éditer', edit_item_path(item)
+            %td   
+              = link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                %span.fa.fa-delete
+                Supprimer
+

@@ -11,6 +11,18 @@ class ItemsController < ApplicationController
     @items = Item.where("is_loanable" => true)
   end
 
+  # GET /user/items
+  # GET /user/items.json
+  def index_user
+    current_user.owners.each do |owner|
+      #if @items.nil?
+        @items = owner.items
+      #else
+      #  @items.concat(owner.items)
+      #end
+    end
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show
@@ -70,10 +82,10 @@ class ItemsController < ApplicationController
   end
 
   def go_to_new_action
-    if @param_owner.nil?
+    if @item.owner.nil?
       new_item_path
     else
-      new_item_path_url(@param_owner)
+      new_item_path_url(@item.owner)
     end
   end
 
