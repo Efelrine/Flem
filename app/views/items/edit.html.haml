@@ -7,6 +7,6 @@
   = link_to 'Afficher', @item
 
   - if @param_owner.nil?
-    = link_to 'Retour à la liste', items_path
+    = link_to 'Retour à la liste', all_personal_items_url
   - else
     = link_to 'Retour à la liste', personal_items_url(@param_owner)

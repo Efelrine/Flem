@@ -15,12 +15,9 @@ class ItemsController < ApplicationController
   # GET /user/items
   # GET /user/items.json
   def index_user
+    @items = Array.new()
     current_user.owners.each do |owner|
-      #if @items.nil?
-        @items = owner.items
-      #else
-      #  @items.concat(owner.items)
-      #end
+      @items.concat(owner.items)
     end
   end
 

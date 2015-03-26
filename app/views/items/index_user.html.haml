@@ -34,7 +34,7 @@
           /%th (Todo : "Voir", Think to add non sortable column)
       %tbody.list
         - @items.each do |item|
-          %tr.item-entry{ data: {'infos-url' => item_path(item) } }
+          %tr.item-entry
             %td.item-name= item.name
             %td.item-owner= item.owner.name
             %td.item-number= item.number

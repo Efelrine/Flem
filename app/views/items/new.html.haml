@@ -5,7 +5,7 @@
 
 .links
   - if @param_owner.nil?
-    = link_to items_path, class: 'btn btn-default btn-xs' do
+    = link_to all_personal_items_url, class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
       Retour à la liste
   - else
