@@ -23,9 +23,10 @@
   %br
   %br          
   .links
-    = link_to edit_owner_path(@owner), class: 'btn btn-default btn-xs' do
-      %span.fa.fa-edit
-      Modifier
+    -if be_owner(@owner)
+      = link_to edit_owner_path(@owner), class: 'btn btn-default btn-xs' do
+        %span.fa.fa-edit
+        Modifier
 
     = link_to owners_path, class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
