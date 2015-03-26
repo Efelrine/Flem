@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :require_be_owner_item, only: [:edit]
+  before_action :require_be_link_to_owner, only: [:index_owner]
   before_filter :id_owner_default, only: [:new, :edit]
   before_filter :get_param_owner, only: [:new, :edit]
   before_filter :owners_by_user, only: [:new, :edit]
@@ -20,6 +21,17 @@ class ItemsController < ApplicationController
       #else
       #  @items.concat(owner.items)
       #end
+    end
+  end
+
+  # GET /owners/1/items
+  # GET /owners/1/items.json
+  def index_owner
+    if @concern_owner = Owner.find_by_id(params[:id].to_i)
+      @items = @concern_owner.items
+    else
+      flash[:alert] = "Owner not found"
+      redirect_to :root
     end
   end
 
@@ -120,6 +132,10 @@ class ItemsController < ApplicationController
 
   def require_be_owner_item
     require_be_owner(Item.find(params[:id].to_i).owner)
+  end
+
+  def require_be_link_to_owner
+    require_be_owner(Owner.find_by_id(params[:id].to_i))
   end
 
   def id_owner_default

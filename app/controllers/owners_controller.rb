@@ -1,24 +1,13 @@
 class OwnersController < ApplicationController
   before_action :require_sign_in
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
-  before_action :require_be_link_to_owner, only: [:edit, :index_owner]
+  before_action :require_be_link_to_owner, only: [:edit]
   before_action :require_current_user_link, only: [:create, :update]
 
   # GET /owners
   # GET /owners.json
   def index
     @owners = Owner.all
-  end
-
-  # GET /owners/1/items
-  # GET /owners/1/items.json
-  def index_owner
-    if @concern_owner = Owner.find_by_id(params[:id].to_i)
-      @items = @concern_owner.items
-    else
-      flash[:alert] = "Owner not found"
-      redirect_to :root
-    end
   end
 
   # GET /owners/1
