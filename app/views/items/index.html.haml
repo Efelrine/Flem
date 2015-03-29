@@ -1,5 +1,6 @@
 .page-header
-  %h1 Objets empruntables
+  %h1
+    #{I18n.t 'views.item.loanable'}
 
 .col-sm-6#items-list
   .pane
@@ -7,16 +8,16 @@
       %thead
         %tr
           %th.sort{ data: { sort: 'item-name' } }
-            Nom
+            #{I18n.t 'activerecord.attributes.item.name'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-category' } }
-            Catégorie
+            #{I18n.t 'activerecord.attributes.item.category_id'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-owner' } }
-            Propriétaire
+            #{I18n.t 'activerecord.attributes.item.owner_id'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-number' } }
-            Nombre
+            #{I18n.t 'activerecord.attributes.item.number'}
             %i.fa.fa-sort
           %th
       %tbody.list
@@ -33,9 +34,9 @@
             %td
               /= link_to item, class: 'btn btn-default btn-xs' do
               /  %span.fa.fa-index
-              /  Voir
+              /  #{I18n.t 'views.buttons.show'}
               - if be_owner(item.owner)
                 = link_to edit_item_path(item), class: 'btn btn-default btn-xs' do
                   %span.fa.fa-index
-                  Éditer
+                  #{I18n.t 'views.buttons.edit'}
   %br

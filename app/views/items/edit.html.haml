@@ -1,12 +1,13 @@
 .page-header
-  %h1 Editer un objet
+  %h1
+  	#{I18n.t 'activerecord.models.item.edit'}
 
 = render 'form'
 
 .links
-  = link_to 'Afficher', @item
+  /= link_to 'Afficher', @item
 
   - if @param_owner.nil?
-    = link_to 'Retour à la liste', all_personal_items_url
+    = link_to I18n.t 'views.buttons.return', all_personal_items_url
   - else
-    = link_to 'Retour à la liste', personal_items_url(@param_owner)
+    = link_to I18n.t 'views.buttons.return', personal_items_url(@param_owner)

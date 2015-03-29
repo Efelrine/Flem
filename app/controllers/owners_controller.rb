@@ -32,7 +32,7 @@ class OwnersController < ApplicationController
     respond_to do |format|
       if @owner.save
         format.html do
-          if params[:commit] == "Enregistrer et nouveau"
+          if params[:commit] == I18n.t('views.buttons.save_and_new')
             action = new_owner_path
           else
             action = @owner

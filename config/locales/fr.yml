@@ -7,9 +7,13 @@ fr:
       item:
         one: Objet
         other: Objets
+        new: Nouvel objet
+        edit: Éditer un objet
       owner:
         one: Propriétaire
         other: Propriétaires
+        new: Nouveau propriétaire
+        edit: Éditer un propriétaire
       category:
         one: Catégorie
         other: Catégories
@@ -18,7 +22,7 @@ fr:
         other: Emprunts
     attributes:
       user:
-        email: Mail
+        email: Email
         name: Nom
         phone: Téléphone
         password: Mot de passe
@@ -37,7 +41,7 @@ fr:
         owner_id: Propriétaire
         category_id: Catégorie
       owner:
-        mail: Mail
+        mail: Email
         phone: Téléphone
         name: Nom
       category:
@@ -57,8 +61,26 @@ fr:
       lost: Perdu perdu... J'ai perdu mes billes...
       not_found: Objet non trouvé.
       destroyed: Objet supprimé avec succès.
+      link_to: Objets liés à 
+      belong_to: Objets de 
+      loanable: Objets empruntables
     owner:
       created: Propriétaire créé avec succès.
       updated: Propriétaire mis à jour avec succès.
       not_found: Propriétaire non trouvé.
       destroyed: Propriétaire supprimé avec succès.
+    loan:
+      created: Emprunt créé avec succès.
+      not_found: Emprunt non trouvé.
+    buttons:
+      return: Retour à la liste
+      edit: Éditer
+      delete: Supprimer
+      show: Voir
+      print: Afficher
+      save: Enregistrer
+      save_and_new: Enregistrer et nouveau
+      loan: Emprunter
+    user:
+      users_linked: Utilisateur(s) lié(s)
+      others_users_linked: Autres utilisateurs liés

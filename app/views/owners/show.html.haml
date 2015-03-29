@@ -3,17 +3,17 @@
     = @owner.name
 .col-sm-6#owners-list
   %h3
-    Utilisateur(s) lié(s):
+    #{I18n.t 'views.user.users_linked'} :
   .pane
     %table.table.table-striped.table-condensed#users_linked_list
       %thead
         %tr
           %th.sort{ data: { sort: 'user-name'} }
-            Nom
+            #{I18n.t 'activerecord.attributes.user.name'}
           %th.sort{ data: { sort: 'user-email'} }
-            Email
+            #{I18n.t 'activerecord.attributes.user.email'}
           %th.sort{ data: { sort: 'user-phone'} }
-            Téléphone
+            #{I18n.t 'activerecord.attributes.user.phone'}
       %tbody.list
         - @owner.users.each do |user|
           %tr.user-entry
@@ -26,13 +26,13 @@
     -if be_owner(@owner)
       = link_to edit_owner_path(@owner), class: 'btn btn-default btn-xs' do
         %span.fa.fa-edit
-        Modifier
+        #{I18n.t 'views.buttons.edit'}
 
     = link_to owners_path, class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
-      Retour à la liste
+      #{I18n.t 'views.buttons.return'}
     
     -if can_be_deleted(@owner)
       = link_to @owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
         %span.fa.fa-delete
-        Supprimer
+        #{I18n.t 'views.buttons.delete'}

@@ -1,9 +1,10 @@
 .page-header
-  %h1 Nouveau propriétaire
+  %h1
+    #{I18n.t 'activerecord.models.owner.new'}
 
 = render partial: 'form', locals: { save_and_new: true }
 
 .links
   = link_to owners_path, class: 'btn btn-default btn-xs' do
     %span.fa.fa-index
-    Retour à la liste
+    #{I18n.t('views.buttons.return')}

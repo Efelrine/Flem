@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.save
         format.html do
-          if params[:commit] == "Enregistrer et nouveau"
+          if params[:commit] == I18n.t('views.buttons.save_and_new')
             action = go_to_new_action
           else
             action = personal_items_url(@item.owner)

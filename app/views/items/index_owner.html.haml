@@ -1,40 +1,41 @@
 .page-header
-  %h1 Objets de #{@concern_owner.name}
+  %h1
+    #{I18n.t 'views.item.belong_to'} #{@concern_owner.name}
 
 .col-sm-6#items-list
   #new-item-button
-    %a.btn.btn-primary{ href: new_item_path_url(@concern_owner), title: 'Nouvel Objet'}
+    %a.btn.btn-primary{ href: new_item_path_url(@concern_owner), title: I18n.t('activerecord.models.item.new')}
       %span.fa.fa-plus
-      Nouvel Objet
+      #{I18n.t 'activerecord.models.item.new'}
   %br
   .pane
     %table.table.table-striped.table-condensed#items_list_owner
       %thead
         %tr
           %th.sort{ data: { sort: 'item-name' } }
-            Nom
+            #{I18n.t 'activerecord.attributes.item.name'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-category' } }
-            Catégorie
+            #{I18n.t 'activerecord.attributes.item.category_id'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-number' } }
-            Nombre
+            #{I18n.t 'activerecord.attributes.item.number'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-location' } }
-            Localisation
+            #{I18n.t 'activerecord.attributes.item.location'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-price' } }
-            Prix
+            #{I18n.t 'activerecord.attributes.item.price'}
           %th.sort{ data: { sort: 'item-comment' } }
-            Commentaire
+            #{I18n.t 'activerecord.attributes.item.comment'}
           %th.sort{ data: { sort: 'item-is_loanable' } }
-            Empruntable
+            #{I18n.t 'activerecord.attributes.item.is_loanable'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-is_loaned' } }
-            Emprunté
+            #{I18n.t 'activerecord.attributes.item.is_loaned'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-is_lost' } }
-            Perdu
+            #{I18n.t 'activerecord.attributes.item.is_lost'}
             %i.fa.fa-sort
           %th
       %tbody.list
@@ -63,19 +64,18 @@
                 %span.item-is_lost= "Oui"
               - else
                 %span.item-is_lost= "Non"
-            /%td= link_to 'Voir', item
             %td
               /= link_to item, class: 'btn btn-default btn-xs' do
               /  %span.fa.fa-index
-              /  Voir
+              /  #{I18n.t 'views.buttons.show'}
               = link_to edit_item_path_url(@concern_owner, item), class: 'btn btn-default btn-xs' do
                 %span.fa.fa-index
-                Éditer
+                #{I18n.t 'views.buttons.edit'}
               /-if item.is_loanable & !item.is_loaned  
               /  = link_to new_loan_path_url(item), class: 'btn btn-default btn-xs' do
               /    %span.fa.fa-index
-              /    Emprunter  
+              /    #{I18n.t 'views.buttons.loan'}  
               = link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
                 %span.fa.fa-delete
-                Supprimer
+                #{I18n.t 'views.buttons.delete'}
 

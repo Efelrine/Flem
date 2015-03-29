@@ -13,8 +13,8 @@
   - if @param_owner.nil?
     = link_to items_path, class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
-      Retour à la liste
+      #{I18n.t 'views.buttons.return'}
   - else
     = link_to personal_items_url(@param_owner), class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
-      Retour à la liste
+      #{I18n.t 'views.buttons.return'}
