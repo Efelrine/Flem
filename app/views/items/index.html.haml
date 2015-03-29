@@ -34,5 +34,7 @@
             /%td= link_to 'Voir', item
             %td
               - if be_owner(item.owner)
-                = link_to 'Éditer', edit_item_path(item)
+                = link_to edit_item_path(item), class: 'btn btn-default btn-xs' do
+                  %span.fa.fa-index
+                  Éditer
   %br
