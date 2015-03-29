@@ -37,7 +37,7 @@ class OwnersController < ApplicationController
           else
             action = @owner
           end
-          redirect_to action, notice: I18n.t('views.created_m', entity: 'Propriétaire')
+          redirect_to action, notice: I18n.t('views.owner.created')
         end
         format.json { render :show, status: :created, location: @owner }
       else
@@ -52,7 +52,7 @@ class OwnersController < ApplicationController
   def update
     respond_to do |format|
       if @owner.update(owner_params)
-        format.html { redirect_to @owner, notice: I18n.t('views.updated_m', entity: 'Propriétaire') }
+        format.html { redirect_to @owner, notice: I18n.t('views.owner.updated') }
         format.json { render :show, status: :ok, location: @owner }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class OwnersController < ApplicationController
   def destroy
     @owner.destroy
     respond_to do |format|
-      format.html { redirect_to owners_url, notice: I18n.t('views.updated_m', entity: 'Propriétaire') }
+      format.html { redirect_to owners_url, notice: I18n.t('views.owner.updated') }
       format.json { head :no_content }
     end
   end
@@ -75,7 +75,7 @@ class OwnersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_owner
       if Owner.find_by_id(params[:id].to_i).nil?
-        flash[:alert] = I18n.t('views.not_found_m', entity: 'Propriétaire')
+        flash[:alert] = I18n.t('views.owner.not_found')
         redirect_to :root
       else
         @owner = Owner.find(params[:id].to_i)

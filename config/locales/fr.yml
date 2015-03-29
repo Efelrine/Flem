@@ -51,8 +51,14 @@ fr:
         owner_id: Propriétaire
         borrower_id: Emprunteur
   views:
-    created_m: "%{entity} créé avec succès."
-    updated_m: "%{entity} mis à jour avec succès."
-    lost: "Perdu, perdu... J'ai perdu mes billes..."
-    not_found_m: "%{entity} non trouvé."
-    destroyed_m: "%{entity} supprimé avec succès."
+    item:
+      created: Objet créé avec succès.
+      updated: Objet mis à jour avec succès.
+      lost: Perdu perdu... J'ai perdu mes billes...
+      not_found: Objet non trouvé.
+      destroyed: Objet supprimé avec succès.
+    owner:
+      created: Propriétaire créé avec succès.
+      updated: Propriétaire mis à jour avec succès.
+      not_found: Propriétaire non trouvé.
+      destroyed: Propriétaire supprimé avec succès.
