@@ -16,7 +16,7 @@
 //= require jquery.turbolinks
 //= require_tree .
 //= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap
+//= require dataTables/jquery.dataTables.bootstrap3
 //= require bootstrap
 
 //$(function() {$('input[type=file]').bootstrapFileInput() });

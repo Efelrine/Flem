@@ -27,7 +27,9 @@
             %td= link_to 'Voir', owner
             %td
               - if be_owner(owner)
-                = link_to 'Éditer', edit_owner_path(owner)
+                = link_to edit_owner_path(owner), class: 'btn btn-default btn-xs' do
+                  %span.fa.fa-index
+                  Éditer
             %td
               -if can_be_deleted(owner)
                 = link_to owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do

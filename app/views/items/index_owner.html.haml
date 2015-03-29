@@ -61,7 +61,10 @@
               - else
                 %span.item-is_lost= "Non"
             /%td= link_to 'Voir', item
-            %td= link_to 'Éditer', edit_item_path_url(@concern_owner, item)
+            %td
+              = link_to edit_item_path_url(@concern_owner, item), class: 'btn btn-default btn-xs' do
+                %span.fa.fa-index
+                Éditer
             /%td
             /  -if item.is_loanable & !item.is_loaned
             /    = link_to 'Emprunter', new_loan_path_url(item)
