@@ -7,7 +7,7 @@
   = f.number_field :price, min: 0, max:5000, step: 1
 
   .col-sm-offset-2
-    = f.check_box :is_loanable, label: "Empruntable"
+    = f.check_box :is_loanable, label: I18n.t('activerecord.attributes.is_loanable')
 
   = f.text_field :comment
 
@@ -16,5 +16,5 @@
 
   .col-sm-offset-2
     - if defined? save_and_new
-      = f.primary 'Enregistrer et nouveau'
-    = f.primary 'Enregistrer'
+      = f.primary I18n.t('views.buttons.save_and_new')
+    = f.primary I18n.t('views.buttons.save')

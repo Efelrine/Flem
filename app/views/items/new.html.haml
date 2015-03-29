@@ -1,5 +1,6 @@
 .page-header
-  %h1 Nouvel objet
+  %h1
+    #{I18n.t 'activerecord.models.item.new'}
 
 = render partial: 'form', locals: { save_and_new: true }
 
@@ -7,8 +8,8 @@
   - if @param_owner.nil?
     = link_to all_personal_items_url, class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
-      Retour à la liste
+      #{I18n.t 'views.buttons.return'}
   - else
     = link_to personal_items_url(@param_owner), class: 'btn btn-default btn-xs' do
       %span.fa.fa-index
-      Retour à la liste
+      #{I18n.t 'views.buttons.return'}

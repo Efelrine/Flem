@@ -1,23 +1,24 @@
 .page-header
-  %h1 Propriétaires
+  %h1
+    #{I18n.t 'activerecord.models.owner.other'}
 
 .col-sm-6#owners-list
   #new-owner-button
-    %a.btn.btn-primary{ href: new_owner_path, title: 'Nouveau Propriétaire',   }
+    %a.btn.btn-primary{ href: new_owner_path, title: I18n.t('activerecord.models.owner.new'),   }
       %span.fa.fa-plus
-      Nouveau propriétaire
+      #{I18n.t 'activerecord.models.owner.new'}
   %br
   .pane
     %table.table.table-striped.table-condensed#owners_list
       %thead
         %tr
           %th.sort{ data: { sort: 'owner-name' } }
-            Nom
+            #{I18n.t 'activerecord.attributes.owner.name'}
             %i.fa.fa-sort
           %th
-            Mail
+            #{I18n.t 'activerecord.attributes.owner.mail'}
           %th
-            Téléphone
+            #{I18n.t 'activerecord.attributes.owner.phone'}
           %th
       %tbody.list
         - @owners.each do |owner|
@@ -28,13 +29,13 @@
             %td
               = link_to owner, class: 'btn btn-default btn-xs' do
                 %span.fa.fa-index
-                Voir
+                #{I18n.t 'views.buttons.show'}
               - if be_owner(owner)
                 = link_to edit_owner_path(owner), class: 'btn btn-default btn-xs' do
                   %span.fa.fa-index
-                  Éditer
+                  #{I18n.t 'views.buttons.edit'}
               -if can_be_deleted(owner)
                 = link_to owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
                   %span.fa.fa-delete
-                  Supprimer
+                  #{I18n.t 'views.buttons.delete'}
   %br

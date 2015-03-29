@@ -8,7 +8,7 @@ class LoansController < ApplicationController
   def new
     @item = Item.find_by_id(params[:id])
     if @item.nil?
-      flash[:alert] = I18n.t('views.not_found_m', entity: 'Objet')
+      flash[:alert] = I18n.t('views.item.not_found')
       redirect_to :root
     else
       @loan = Loan.new
@@ -34,7 +34,7 @@ class LoansController < ApplicationController
     respond_to do |format|
       if @loan.save
         @item = @loan.item
-        format.html { redirect_to @item, notice: I18n.t('views.created_m', entity: 'Emprunt') }
+        format.html { redirect_to @item, notice: I18n.t('views.loan.created') }
         format.json { render :show, status: :created, location: @loan }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class LoansController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_loan
     unless @load = Loan.find_by_id(params[:id])
-      flash[:alert] = "Loan not found"
+      flash[:alert] = I18n.t('views.loan.not_found')
       redirect_to :root
     end
   end
