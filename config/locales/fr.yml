@@ -1,0 +1,48 @@
+fr:
+  activerecord:
+    models:
+      user:
+        one: Utilisateur
+        other: Utilisateurs
+      item:
+        one: Objet
+        other: Objets
+      owner:
+        one: Propriétaire
+        other: Propriétaires
+      category:
+        one: Catégorie
+        other: Catégories
+      loan:
+        one: Emprunt
+        other: Emprunts
+    attributes:
+      user:
+        email: Mail
+        name: Nom
+        phone: Téléphone
+      item:
+        name: Nom
+        number: Nombre
+        comment: Commentaire
+        price: Prix
+        is_loanable: Empruntable
+        is_lost: Perdu
+        is_loaned: Emprunté
+        location: Localisation
+        owner_id: Propriétaire
+        category_id: Catégorie
+      owner:
+        mail: Mail
+        phone: Téléphone
+        name: Nom
+      category:
+        name: Nom
+      loan:
+        number: Nombre
+        date_loan:  Date d'emprunt
+        state: Etat
+        is_rendered: Rendu
+        item_id: Objet
+        owner_id: Propriétaire
+        borrower_id: Emprunteur
