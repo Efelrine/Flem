@@ -55,4 +55,4 @@ fr:
     updated_m: "%{entity} mis à jour avec succès."
     lost: "Perdu, perdu... J'ai perdu mes billes..."
     not_found_m: "%{entity} non trouvé."
-    destroyed_m: "%{entity} supprimé avec succès.""
+    destroyed_m: "%{entity} supprimé avec succès."
