@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   before_filter :id_owner_default, only: [:new, :edit]
   before_filter :get_param_owner, only: [:new, :edit]
   before_filter :owners_by_user, only: [:new, :edit]
+  before_filter :get_categories, only: [:new, :edit]
 
   # GET /items
   # GET /items.json
@@ -124,7 +125,7 @@ class ItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:name,:number, :owner_id, :is_loanable, :comment, :price, :is_lost, :location)
+    params.require(:item).permit(:name,:number, :owner_id, :is_loanable, :comment, :price, :is_lost, :location, :category_id)
   end
 
   def require_be_owner_item
@@ -155,5 +156,9 @@ class ItemsController < ApplicationController
     if user_signed_in?
       @owners_by_user = current_user.owners
     end
+  end
+
+  def get_categories
+    @all_categories = Category.all
   end
 end

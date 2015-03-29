@@ -14,6 +14,9 @@
           %th.sort{ data: { sort: 'item-name' } }
             Nom
             %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-category' } }
+            Catégorie
+            %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-owner' } }
             Propriétaire
             %i.fa.fa-sort
@@ -36,6 +39,9 @@
         - @items.each do |item|
           %tr.item-entry
             %td.item-name= item.name
+            %td.item-category
+              -if item.category
+                = item.category.name
             %td.item-owner= item.owner.name
             %td.item-number= item.number
             %td.item-location= item.location

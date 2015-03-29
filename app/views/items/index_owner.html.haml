@@ -14,6 +14,9 @@
           %th.sort{ data: { sort: 'item-name' } }
             Nom
             %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-category' } }
+            Catégorie
+            %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-number' } }
             Nombre
             %i.fa.fa-sort
@@ -41,6 +44,9 @@
         - @items.each do |item|
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
             %td.item-name= item.name
+            %td.item-category
+              -if item.category
+                = item.category.name
             %td.item-number= item.number
             %td.item-location= item.location
             %td.item-price= item.price

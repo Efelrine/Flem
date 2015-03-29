@@ -1,5 +1,6 @@
 = bootstrap_form_for(@item, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-3') do |f|
   = f.text_field :name
+  = f.collection_select :category_id, @all_categories, :id, :name, {:include_blank=> ""}, { class: 'improved-select' }
   = f.number_field :number, min: 0, max:500, step: 1
   = f.collection_select :owner_id, @owners_by_user, :id, :name, {:selected => @id_owner_default}, { class: 'improved-select' }
   = f.text_field :location
