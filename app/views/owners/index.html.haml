@@ -19,21 +19,20 @@
           %th
             Téléphone
           %th
-          %th
-          %th
       %tbody.list
         - @owners.each do |owner|
           %tr.owner-entry{ data: {'infos-url' => owner_path(owner) } }
             %td.owner-name= owner.name
             %td= owner.mail
             %td= owner.phone
-            %td= link_to 'Voir', owner
             %td
+              = link_to owner, class: 'btn btn-default btn-xs' do
+                %span.fa.fa-index
+                Voir
               - if be_owner(owner)
                 = link_to edit_owner_path(owner), class: 'btn btn-default btn-xs' do
                   %span.fa.fa-index
                   Éditer
-            %td
               -if can_be_deleted(owner)
                 = link_to owner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
                   %span.fa.fa-delete

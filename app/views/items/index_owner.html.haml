@@ -37,9 +37,6 @@
             Perdu
             %i.fa.fa-sort
           %th
-          %th
-          /%th (Todo : "Voir", Think to add non sortable column)
-          /%th (Todo : "Emprunter", Think to add non sortable column)
       %tbody.list
         - @items.each do |item|
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
@@ -68,13 +65,16 @@
                 %span.item-is_lost= "Non"
             /%td= link_to 'Voir', item
             %td
+              /= link_to item, class: 'btn btn-default btn-xs' do
+              /  %span.fa.fa-index
+              /  Voir
               = link_to edit_item_path_url(@concern_owner, item), class: 'btn btn-default btn-xs' do
                 %span.fa.fa-index
                 Éditer
-            /%td
-            /  -if item.is_loanable & !item.is_loaned
-            /    = link_to 'Emprunter', new_loan_path_url(item)
-            %td   
+              /-if item.is_loanable & !item.is_loaned  
+              /  = link_to new_loan_path_url(item), class: 'btn btn-default btn-xs' do
+              /    %span.fa.fa-index
+              /    Emprunter  
               = link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
                 %span.fa.fa-delete
                 Supprimer

@@ -19,7 +19,6 @@
             Nombre
             %i.fa.fa-sort
           %th
-          /%th (Todo : "Voir", Think to add non sortable column)
       %tbody.list
         - @items.each do |item|
           %tr.item-entry{ data: {'infos-url' => item_path(item) } }
@@ -31,8 +30,10 @@
               = link_to owner_path(item.owner), class: 'panel-link' do
                 %span.item-owner= item.owner.name
             %td.item-number= item.number
-            /%td= link_to 'Voir', item
             %td
+              /= link_to item, class: 'btn btn-default btn-xs' do
+              /  %span.fa.fa-index
+              /  Voir
               - if be_owner(item.owner)
                 = link_to edit_item_path(item), class: 'btn btn-default btn-xs' do
                   %span.fa.fa-index
