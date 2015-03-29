@@ -1,6 +1,7 @@
 = bootstrap_form_for(@owner, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-3') do |f|
   = f.text_field :name
   = f.text_field :phone
+  = f.text_field :mail
   - if not @owner.is_primary
     .col-sm-6#owners-list
     %h3
@@ -10,7 +11,7 @@
         %thead
           %tr
             %th.sort{ data: { sort: 'user-name'} }
-              Nom
+              #{I18n.t 'activerecord.attributes.owner.name'}
             %th.sort{ data: { sort: 'user-email'} }
               Email
             %th.sort{ data: { sort: 'user-phone'} }

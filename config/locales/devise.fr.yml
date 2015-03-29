@@ -1,0 +1,58 @@
+fr:
+  devise:
+    confirmations:
+      confirmed: "Votre adresse email a bien été confirmée."
+      send_instructions: "Vous allez recevoir un email avec les instructions pour confirmer votre adresse mail d'ici quelques minutes."
+      send_paranoid_instructions: "Si votre adresse mail existe dans notre base de données, vous recevrez un email avec les instructions pour confirmer votre adresse mail d'ici quelques minutes."
+    failure:
+      already_authenticated: "Vous êtes déjà connecté."
+      inactive: "Votre compte n'est pas encore activé."
+      invalid: "Adresse mail ou mot de passe invalide."
+      locked: "Votre compte est bloqué."
+      last_attempt: "Il vous reste un essai avant que votre compte ne soit bloqué."
+      not_found_in_database: "Adresse mail ou mot de passe invalide."
+      timeout: "Votre session a expiré. Merci de vous connecter pour continuer."
+      unauthenticated: "Vous devez vous connecter ou vous enregistrer pour continuer."
+      unconfirmed: "Vous devez confirmer votre adresse mail avant de continuer."
+    mailer:
+      confirmation_instructions:
+        subject: "Instructions de confirmation"
+      reset_password_instructions:
+        subject: "Instructions pour réinitialiser votre mot de passe"
+      unlock_instructions:
+        subject: "Instructions pour débloquer votre compte"
+    omniauth_callbacks:
+      failure: "Impossible de vous authentifier pour %{kind} à cause de \"%{reason}\"."
+      success: "Authentifié avec succès pour %{kind}."
+    passwords:
+      no_token: "Vous ne pouvez accéder à cette page si vous n'avez pas eu le mail pour réinitialiser votre mot de passe. Si vous avez eu un tel mail, merci de vérifier que l'URL copiée est semblable à celle du mail."
+      send_instructions: "Vous allez recevoir un mail avec les instructions pour réinitialiser votre mot de passe d'ici quelques minutes."
+      send_paranoid_instructions: "Si votre adresse mail existe dans notre base de données, vous recevrez un mail avec les instructions pour réinitialiser votre mot de passe d'ici quelques minutes."
+      updated: "Votre mot de passe a été modifié avec succès. Vous êtes connecté."
+      updated_not_active: "Votre mot de passe a été modifié avec succès."
+    registrations:
+      destroyed: "Au revoir ! Votre compte a été détruit avec succès. Nous espérons bientôt vous revoir."
+      signed_up: "Bienvenue ! Vous vous êtes enregistré avec succès."
+      signed_up_but_inactive: "Vous vous êtes enregistré avec succès. Toutefois vous ne pouvez vous connecter pour le moment votre compte n'étant pas encore activé."
+      signed_up_but_locked: "Vous vous êtes enregistré avec succès. Toutefois vous ne pouvez vous connecter pour le moment votre compte étant bloqué."
+      signed_up_but_unconfirmed: "Un mail avec un lien de confirmation vous a été envoyé. Merci de cliquer sur ce lien pour activer votre compte."
+      update_needs_confirmation: "Votre compte a été misà jour avec succès, mais il faut confirmer l'adresse mail. Merci de vérifier votre adresse mail et de suivre le lien afin de confirmer votre nouvelle adresse mail."
+      updated: "Votre compte a été mis à jour avec succès."
+    sessions:
+      signed_in: "Connecté avec succès."
+      signed_out: "Déconnecté avec succès."
+      already_signed_out: "Déconnecté avec succès."
+    unlocks:
+      send_instructions: "Vous allez recevoir un mail avec les instructions pour débloquer votre compte d'ici quelques minutes."
+      send_paranoid_instructions: "Si votre compte existe, vous recevrez un mail avec les instructions pour débloquer votre compte d'ici quelques minutes."
+      unlocked: "Votre compte a été débloqué avec succès. Merci de vous connecter pour continuer."
+  errors:
+    messages:
+      already_confirmed: "déjà confirmé. Essayer de vous connecter."
+      confirmation_period_expired: "doit être confirmé avant %{period}, merci de demander un nouveau lien"
+      expired: "a expiré, merci de demander un nouveau lien"
+      not_found: "non trouvé"
+      not_locked: "n'était pas bloqué"
+      not_saved:
+        one: "1 erreur a empêché ce %{resource} d'être sauvé :"
+        other: "%{count} erreurs a empêché ce %{resource} d'être sauvé :"

@@ -31,7 +31,14 @@ class OwnersController < ApplicationController
 
     respond_to do |format|
       if @owner.save
-        format.html { redirect_to @owner, notice: 'Owner was successfully created.' }
+        format.html do
+          if params[:commit] == "Enregistrer et nouveau"
+            action = new_owner_path
+          else
+            action = @owner
+          end
+          redirect_to action, notice: I18n.t('views.created_m', entity: 'Propriétaire')
+        end
         format.json { render :show, status: :created, location: @owner }
       else
         format.html { render :new }
@@ -45,7 +52,7 @@ class OwnersController < ApplicationController
   def update
     respond_to do |format|
       if @owner.update(owner_params)
-        format.html { redirect_to @owner, notice: 'Owner was successfully updated.' }
+        format.html { redirect_to @owner, notice: I18n.t('views.updated_m', entity: 'Propriétaire') }
         format.json { render :show, status: :ok, location: @owner }
       else
         format.html { render :edit }
@@ -59,7 +66,7 @@ class OwnersController < ApplicationController
   def destroy
     @owner.destroy
     respond_to do |format|
-      format.html { redirect_to owners_url, notice: 'Owner was successfully destroyed.' }
+      format.html { redirect_to owners_url, notice: I18n.t('views.updated_m', entity: 'Propriétaire') }
       format.json { head :no_content }
     end
   end
@@ -68,7 +75,7 @@ class OwnersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_owner
       if Owner.find_by_id(params[:id].to_i).nil?
-        flash[:alert] = "Owner not found"
+        flash[:alert] = I18n.t('views.not_found_m', entity: 'Propriétaire')
         redirect_to :root
       else
         @owner = Owner.find(params[:id].to_i)
@@ -77,7 +84,7 @@ class OwnersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def owner_params
-    params.require(:owner).permit(:name, :phone, :user_ids => [])
+    params.require(:owner).permit(:name, :mail, :phone, :user_ids => [])
   end
 
   def require_be_link_to_owner

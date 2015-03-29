@@ -21,6 +21,10 @@ fr:
         email: Mail
         name: Nom
         phone: Téléphone
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        current_password: Mot de passe actuel
+        remember_me: Se souvenir de moi
       item:
         name: Nom
         number: Nombre
@@ -46,3 +50,9 @@ fr:
         item_id: Objet
         owner_id: Propriétaire
         borrower_id: Emprunteur
+  views:
+    created_m: "%{entity} créé avec succès."
+    updated_m: "%{entity} mis à jour avec succès."
+    lost: "Perdu, perdu... J'ai perdu mes billes..."
+    not_found_m: "%{entity} non trouvé."
+    destroyed_m: "%{entity} supprimé avec succès.""

@@ -8,7 +8,7 @@ class LoansController < ApplicationController
   def new
     @item = Item.find_by_id(params[:id])
     if @item.nil?
-      flash[:alert] = "Item not found"
+      flash[:alert] = I18n.t('views.not_found_m', entity: 'Objet')
       redirect_to :root
     else
       @loan = Loan.new
@@ -34,7 +34,7 @@ class LoansController < ApplicationController
     respond_to do |format|
       if @loan.save
         @item = @loan.item
-        format.html { redirect_to @item, notice: 'Loan succesfully created.' }
+        format.html { redirect_to @item, notice: I18n.t('views.created_m', entity: 'Emprunt') }
         format.json { render :show, status: :created, location: @loan }
       else
         format.html { render :new }

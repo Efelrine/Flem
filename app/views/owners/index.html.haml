@@ -15,6 +15,8 @@
             Nom
             %i.fa.fa-sort
           %th
+            Mail
+          %th
             Téléphone
           %th
           %th
@@ -23,7 +25,8 @@
         - @owners.each do |owner|
           %tr.owner-entry{ data: {'infos-url' => owner_path(owner) } }
             %td.owner-name= owner.name
-            %td.owner-phone= owner.phone
+            %td= owner.mail
+            %td= owner.phone
             %td= link_to 'Voir', owner
             %td
               - if be_owner(owner)

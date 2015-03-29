@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
     if @concern_owner = Owner.find_by_id(params[:id].to_i)
       @items = @concern_owner.items
     else
-      flash[:alert] = "Owner not found"
+      flash[:alert] = I18n.t('views.not_found_m', entity: 'Propriétaire')
       redirect_to :root
     end
   end
@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
           else
             action = personal_items_url(@item.owner)
           end
-          redirect_to action, notice: 'Item was successfully created.'
+          redirect_to action, notice: I18n.t('views.created_m', entity: 'Objet')
         end
         format.json { render :show, status: :created, location: @item }
       else
@@ -78,9 +78,9 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         format.html do
           if @item.is_lost
-            redirect_to personal_items_url(@item.owner), notice: "Perdu, perdu... J'ai perdu mes billes..."
+            redirect_to personal_items_url(@item.owner), notice: I18n.t('views.lost')
           else
-            redirect_to personal_items_url(@item.owner), notice: 'Item was successfully updated.'
+            redirect_to personal_items_url(@item.owner), notice: I18n.t('views.updated_m', entity: 'Objet')
           end
         end
         format.json { render :show, status: :ok, location: @item }
@@ -106,7 +106,7 @@ class ItemsController < ApplicationController
     @item.destroy
     respond_to do |format|
       format.html do
-        redirect_to personal_items_url(owner), notice: 'Item was successfully destroyed.'
+        redirect_to personal_items_url(owner), notice: I18n.t('views.destroyed_m', entity: 'Objet')
       end
       format.json { head :no_content }
     end
@@ -116,7 +116,7 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       if(Item.find_by_id(params[:id].to_i).nil?)
-        flash[:alert] = "Item not found"
+        flash[:alert] = I18n.t('views.not_found_m', entity: 'Objet')
         redirect_to :root
       else
         @item = Item.find(params[:id].to_i)
