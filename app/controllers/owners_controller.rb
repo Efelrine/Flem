@@ -52,6 +52,9 @@ class OwnersController < ApplicationController
   def update
     respond_to do |format|
       if @owner.update(owner_params)
+        if(@owner.is_primary)
+          edit_user
+        end
         format.html { redirect_to @owner, notice: I18n.t('views.owner.updated') }
         format.json { render :show, status: :ok, location: @owner }
       else
@@ -97,5 +100,11 @@ class OwnersController < ApplicationController
     else
       params[:owner][:user_ids].push current_user.id
     end
+  end
+
+  def edit_user
+    current_user.email = @owner.mail
+    current_user.phone = @owner.phone
+    current_user.save
   end
 end

@@ -55,9 +55,9 @@
               - else
                 %span.item-is_lost= "Non"
             %td
-              = link_to item, class: 'btn btn-default btn-xs' do
-                %span.fa.fa-index
-                #{I18n.t 'views.buttons.show'}
+              /= link_to item, class: 'btn btn-default btn-xs' do
+              /  %span.fa.fa-index
+              /  #{I18n.t 'views.buttons.show'}
               = link_to edit_item_path(item), class: 'btn btn-default btn-xs' do
                 %span.fa.fa-index
                 #{I18n.t 'views.buttons.edit'}
