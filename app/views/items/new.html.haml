@@ -6,10 +6,6 @@
 
 .links
   - if @param_owner.nil?
-    = link_to all_personal_items_url, class: 'btn btn-default btn-xs' do
-      %span.fa.fa-index
-      #{I18n.t 'views.buttons.return'}
+    = link_to I18n.t 'views.buttons.return', all_personal_items_url
   - else
-    = link_to personal_items_url(@param_owner), class: 'btn btn-default btn-xs' do
-      %span.fa.fa-index
-      #{I18n.t 'views.buttons.return'}
+    = link_to I18n.t 'views.buttons.return', personal_items_url(@param_owner)
