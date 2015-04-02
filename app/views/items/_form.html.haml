@@ -5,14 +5,11 @@
   = f.collection_select :owner_id, @owners_by_user, :id, :name, {:selected => @id_owner_default}, { class: 'improved-select' }
   = f.text_field :location
   = f.number_field :price, min: 0, max:5000, step: 1
+  = f.collection_select :item_status_id, @all_item_statuses, :id, :name, { class: 'improved-select' }
 
-  .col-sm-offset-2
-    = f.check_box :is_loanable
 
   = f.text_field :comment
 
-  .col-sm-offset-2
-    = f.check_box :is_lost
 
   .col-sm-offset-2
     - if defined? save_and_new

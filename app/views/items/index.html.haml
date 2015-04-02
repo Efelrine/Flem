@@ -19,6 +19,9 @@
           %th.sort{ data: { sort: 'item-number' } }
             #{I18n.t 'activerecord.attributes.item.number'}
             %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-item_status_id' } }
+            #{I18n.t 'activerecord.attributes.item.item_status_id'}
+            %i.fa.fa-sort
           %th
       %tbody.list
         - @items.each do |item|
@@ -31,6 +34,9 @@
               = link_to owner_path(item.owner), class: 'panel-link' do
                 %span.item-owner= item.owner.name
             %td.item-number= item.number
+            %td.item-item_status
+              -if item.item_status
+                = item.item_status.name
             %td
               /= link_to item, class: 'btn btn-default btn-xs' do
               /  %span.fa.fa-index

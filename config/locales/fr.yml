@@ -34,12 +34,10 @@ fr:
         number: Nombre
         comment: Commentaire
         price: Prix
-        is_loanable: Empruntable
-        is_lost: Perdu
-        is_loaned: Emprunté
         location: Localisation
         owner_id: Propriétaire
         category_id: Catégorie
+        item_status_id: Statut
       owner:
         mail: Email
         phone: Téléphone

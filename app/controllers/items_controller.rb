@@ -6,11 +6,13 @@ class ItemsController < ApplicationController
   before_filter :get_param_owner, only: [:new, :edit]
   before_filter :owners_by_user, only: [:new, :edit]
   before_filter :get_categories, only: [:new, :edit]
+  before_filter :get_item_statuses, only: [:new, :edit]
+
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.where("is_loanable" => true)
+    @items = Item.where(:item_status_id => ItemStatus.where(:name =>["Empruntable","Emprunté"]).ids)
   end
 
   # GET /user/items
@@ -77,7 +79,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         format.html do
-          if @item.is_lost
+          if @item.item_status == ItemStatus.find_by_name("Perdu")
             redirect_to personal_items_url(@item.owner), notice: I18n.t('views.item.lost')
           else
             redirect_to personal_items_url(@item.owner), notice: I18n.t('views.item.updated')
@@ -125,7 +127,7 @@ class ItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:name,:number, :owner_id, :is_loanable, :comment, :price, :is_lost, :location, :category_id)
+    params.require(:item).permit(:name,:number, :owner_id, :comment, :price,  :location, :category_id, :item_status_id)
   end
 
   def require_be_owner_item
@@ -160,5 +162,9 @@ class ItemsController < ApplicationController
 
   def get_categories
     @all_categories = Category.all
+  end
+
+  def get_item_statuses
+    @all_item_statuses = ItemStatus.all
   end
 end

@@ -28,10 +28,7 @@
             #{I18n.t 'activerecord.attributes.item.location'}
             %i.fa.fa-sort
           %th.sort{ data: { sort: 'item-is_loaned' } }
-            #{I18n.t 'activerecord.attributes.item.is_loaned'}
-            %i.fa.fa-sort
-          %th.sort{ data: { sort: 'item-is_lost' } }
-            #{I18n.t 'activerecord.attributes.item.is_lost'}
+            #{I18n.t 'activerecord.attributes.item.item_status_id'}
             %i.fa.fa-sort
           %th
       %tbody.list
@@ -45,15 +42,8 @@
             %td.item-number= item.number
             %td.item-location= item.location
             %td
-              - if item.is_loaned
-                %span.item-is_loaned= "Oui"
-              - else
-                %span.item-is_loaned= "Non"
-            %td
-              - if item.is_lost
-                %span.item-is_lost= "Oui"
-              - else
-                %span.item-is_lost= "Non"
+              - if item.item_status
+                = item.item_status.name
             %td
               /= link_to item, class: 'btn btn-default btn-xs' do
               /  %span.fa.fa-index

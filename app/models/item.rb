@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
   belongs_to :owner
   belongs_to :category
+  belongs_to :item_status
   validates :name, presence: true
   has_many :loans
 

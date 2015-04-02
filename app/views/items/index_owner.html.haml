@@ -28,15 +28,8 @@
             #{I18n.t 'activerecord.attributes.item.price'}
           %th.sort{ data: { sort: 'item-comment' } }
             #{I18n.t 'activerecord.attributes.item.comment'}
-          %th.sort{ data: { sort: 'item-is_loanable' } }
-            #{I18n.t 'activerecord.attributes.item.is_loanable'}
-            %i.fa.fa-sort
-          %th.sort{ data: { sort: 'item-is_loaned' } }
-            #{I18n.t 'activerecord.attributes.item.is_loaned'}
-            %i.fa.fa-sort
-          %th.sort{ data: { sort: 'item-is_lost' } }
-            #{I18n.t 'activerecord.attributes.item.is_lost'}
-            %i.fa.fa-sort
+          %th.sort{ data: { sort: 'item-item_status' } }
+            #{I18n.t 'activerecord.attributes.item.item_status_id'}
           %th
       %tbody.list
         - @items.each do |item|
@@ -49,21 +42,9 @@
             %td.item-location= item.location
             %td.item-price= item.price
             %td.item-comment= item.comment
-            %td
-              - if item.is_loanable
-                %span.item-is_loanable= "Oui"
-              - else
-                %span.item-is_loanable= "Non"
-            %td
-              - if item.is_loaned
-                %span.item-is_loaned= "Oui"
-              - else
-                %span.item-is_loaned= "Non"
-            %td
-              - if item.is_lost
-                %span.item-is_lost= "Oui"
-              - else
-                %span.item-is_lost= "Non"
+            %td.item-item_status
+              -if item.item_status
+                = item.item_status.name
             %td
               /= link_to item, class: 'btn btn-default btn-xs' do
               /  %span.fa.fa-index
