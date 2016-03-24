@@ -32,7 +32,13 @@ gem 'bootstrap_form'
 gem 'haml-rails'
 gem 'rails-i18n'
 
-group 'production' do
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+  gem 'airbrussh', require: false
+end
+
+group :production do
   gem 'therubyracer'
   gem 'tzinfo-data'
   gem 'pg'
